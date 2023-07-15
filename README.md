@@ -1,42 +1,98 @@
-# Nuxt 3 Minimal Starter
+# O-UN-WAN (오운완)
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+## 개요
 
-## Setup
+본 Repo는 피트릭스 FE 포지션 지원을 위한 사전 과제입니다.
 
-Make sure to install the dependencies:
+주제는 운동기반 SNS 서비스이며, 인스타그램처럼 사진을 위주로 포스팅하는 것이 메인 서비스입니다. 운동 유형을 설정해 사진을 업로드하며, 날짜별로 "오운완"을 기록할 수 있습니다.
 
-```bash
-# yarn
-yarn install
+## 문제 해결을 위한 아이디어 요약
 
-# npm
-npm install
+### 프로세스 항목
 
-# pnpm
-pnpm install --shamefully-hoist
+- 유저 로그인
+- 사진 그리드 뷰
+    - 정렬 기준
+        - 업로드 시간으로 내림/오름차순 정렬 (기본)
+        - 댓글 생성된 시간으로 내림/오름차순 정렬
+    - 운동 유형 필터링
+    - 인피니트 스크롤을 위한 페이지네이션 수행
+    - 스켈레톤
+    - 댓글 갯수 노출
+    - 사진 묶음 갯수 노출
+- 사진 업로드
+    - 운동 유형 선택
+    - 상태 메세지 입력
+    - 5개 까지 업로드 가능
+- 사진 보기 (상세 팝업)
+    - 화면 상단 업로드 날짜 표시 & 네비게이션 버튼
+    - 5개 까지의 사진을 캐러셀로 보여줌
+        - 이전/다음 버튼으로 컨트롤하고, Rotating은 되지 않음
+    - 댓글 노출 (5개 까지)
+
+### 작업 리스트 항목
+
+- 스키마 설계
+    - [ ]  유저
+    - [ ]  포스팅
+    - [ ]  댓글
+- 페이지 구성
+    - [ ]  로그인 - /signin
+    - [ ]  사진 그리드 뷰 - /
+    - [ ]  사진 업로드 - /new (팝업)
+    - [ ]  사진 상세 - /[uid] (팝업)
+
+### API 설계
+
+로그인
+
+| Method | URI | Query | Body | Description |
+| --- | --- | --- | --- | --- |
+| `POST` | `/api/signin` |  | `{ identify }` | 아이디를 입력 받아 로그인 후 세션 생성 |
+
+포스팅
+
+| Method | URI | Query | Body | Description |
+| --- | --- | --- | --- | --- |
+
+댓글
+
+| Method | URI | Query | Body | Description |
+| --- | --- | --- | --- | --- |
+
+## 개발 환경
+
+### FE
+
+- Nuxt
+- Vue
+- TailwindCss
+- DaisyUI
+- Zod
+
+### BE
+
+- Nuxt (h3)
+- Zod
+
+### 환경 구성
+
+- MongoDB
+
+## 프로젝트 빌드 & 테스트 & 실행 방법
+
+```
+// dev 서버 실행
+yarn dev
+
+// 빌드
+yarn build
+
+// 테스트
+yarn test
+
+// 실행
+yarn start
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+## 미해결 이슈 정리
