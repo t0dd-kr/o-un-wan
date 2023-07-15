@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const { showSortModal, sortBy, sortByLabel } = storeToRefs(usePost())
+</script>
 
-<template></template>
+<template>
+  <ModalPost />
+</template>
 
 <style scoped lang="scss"></style>
