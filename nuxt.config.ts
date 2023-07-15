@@ -1,16 +1,19 @@
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from 'nuxt/config'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      meta: [
+        // <meta name="viewport" content="width=device-width, initial-scale=1">
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+    },
+  },
   modules: [
-    [
-      '@pinia/nuxt',
-      {
-        autoImports: ['defineStore', 'storeToRefs'],
-      },
-    ],
     ['@nuxtjs/tailwindcss', { viewer: true }],
     '@vueuse/nuxt',
+    'nuxt-icon',
   ],
   alias: {
     // basic aliases
