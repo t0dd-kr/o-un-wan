@@ -11,14 +11,12 @@
         content="width=device-width, initial-scale=1, viewport-fit=cover"
       />
     </Head>
-    <Body data-theme="light">
+    <Body data-theme="o-un-wan">
       <NuxtLayout>
-        <NuxtPage :page-key="$route.fullPath" />
+        <NuxtPage />
       </NuxtLayout>
     </Body>
   </Html>
 </template>
 
-<style scoped lang="scss">
-  $w: 1px;
-</style>
+<style scoped lang="scss"></style>
