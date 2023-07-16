@@ -49,7 +49,10 @@
             class="flex cursor-pointer items-center justify-center bg-white bg-opacity-0 hover:bg-opacity-5"
             @click="$router.push('/new')"
           >
-            <icon name="heroicons:plus" class="h-12 w-12" />
+            <icon
+              name="heroicons:plus"
+              class="h-12 w-12 max-[420px]:h-6 max-[420px]:w-6"
+            />
           </div>
           <div
             v-for="(image, index) in images"
