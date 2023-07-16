@@ -43,20 +43,20 @@ export const usePost = defineStore('post', () => {
       value: 'ALL',
     },
     {
-      label: '스쿼트',
-      value: 'SQUAT',
-    },
-    {
-      label: '벤치프레스',
-      value: 'BENCH_PRESS',
+      label: '달리기',
+      value: 'RUNNING',
     },
     {
       label: '런지',
       value: 'LUNGE',
     },
     {
-      label: '달리기',
-      value: 'RUNNING',
+      label: '스쿼트',
+      value: 'SQUAT',
+    },
+    {
+      label: '벤치프레스',
+      value: 'BENCH_PRESS',
     },
     {
       label: '기타',
