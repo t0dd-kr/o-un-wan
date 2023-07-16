@@ -3,9 +3,11 @@
   const modal = useModal()
 
   const { filterByOptions } = storeToRefs(usePost())
+  const { getPosts } = usePost()
 
   const content = ref('')
   const images = ref([])
+  const files = ref([])
   const exerciseType = ref('RUNNING')
 
   const inputFile = ref<HTMLElement | null>(null)
@@ -14,11 +16,11 @@
 
   async function onFileUpload(event) {
     // console.log(event)
-    const files = event.target.files
+    files.value = Array.from(event.target.files).slice(0, 5)
 
     // files to preview images
     images.value = await Promise.all(
-      Array.from(files).map(
+      files.value.map(
         file =>
           new Promise(res => {
             const reader = new FileReader()
@@ -54,19 +56,48 @@
     }
   }
 
-  async function submit() {
+  async function uploadImages() {
+    const body = new FormData()
+
+    files.value.forEach(file => {
+      body.append('files', file)
+    })
+
+    let filePaths = []
+
     try {
-      const res = await $fetch('/posts', {
+      const res = await $fetch('/api/upload', {
+        method: 'POST',
+        body,
+      })
+
+      filePaths = res
+    } catch (err) {
+      console.log(err)
+    }
+
+    return filePaths
+  }
+
+  async function createPost() {
+    const images = await uploadImages()
+
+    try {
+      await $fetch('/api/posts', {
         method: 'POST',
         body: {
+          images,
           content: content.value,
-          images: images.value,
           exerciseType: exerciseType.value,
         },
       })
     } catch (err) {
-      router.push('/')
+      console.log(err)
     }
+
+    await getPosts(true)
+
+    router.push('/')
   }
 </script>
 
@@ -92,7 +123,7 @@
                 'text-primary': exerciseType,
               }"
               :disabled="!exerciseType"
-              @click="submit()"
+              @click="createPost()"
             >
               공유
             </button>
@@ -155,7 +186,7 @@
               class="hidden"
               ref="inputFile"
               multiple
-              accept="image/*"
+              accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
             />
           </button>
         </div>
