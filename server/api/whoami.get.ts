@@ -1,4 +1,5 @@
 import { useColl } from '@/server/plugins/mongo'
+import { User } from 'entities/user.entity'
 
 export default defineEventHandler(async event => {
   if (!getCookie(event, 'identify')) {
@@ -9,7 +10,7 @@ export default defineEventHandler(async event => {
 
   const USER = await useColl('user')
 
-  const user = await USER.findOne(
+  const user = await USER.findOne<User>(
     { identify },
     {
       projection: {
