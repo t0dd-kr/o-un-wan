@@ -73,10 +73,10 @@
 <template>
   <div
     @click.self="onCancel"
-    class="bg-base-100 fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-opacity-80 px-4"
+    class="bg-base-100 fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-opacity-80 px-5 max-[420px]:px-3"
   >
     <div
-      class="bg-base-200 flex w-full max-w-[720px] flex-col justify-between rounded-2xl"
+      class="bg-base-200 flex w-full max-w-[720px] flex-col justify-between overflow-hidden rounded-2xl"
     >
       <div class="relative flex items-center justify-center gap-8 px-3 py-3">
         게시글 작성
@@ -114,9 +114,9 @@
             class="flex w-full items-center justify-between gap-2 px-4 text-sm"
           >
             <div class="flex h-full items-start justify-start py-4">
-              운동유형
+              운동 유형
             </div>
-            <div class="flex flex-1 flex-wrap justify-end gap-2 p-4">
+            <div class="flex flex-1 flex-wrap justify-end gap-2 py-4">
               <button
                 class="badge"
                 v-for="option in filterByOptions.filter(
@@ -141,11 +141,11 @@
         </div>
         <Carousel :images="images" v-else-if="images.length > 0" />
         <div
-          class="flex h-full w-full flex-col items-center justify-center"
+          class="flex h-full w-full flex-col items-center justify-center px-4"
           v-else
         >
           <button
-            class="btn btn-primary btn-wide"
+            class="btn btn-primary min-[421px]:btn-wide max-[420px]:btn-sm max-w-full"
             @click="$refs.inputFile.click()"
           >
             사진 업로드
