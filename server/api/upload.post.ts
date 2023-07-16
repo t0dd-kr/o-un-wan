@@ -45,7 +45,7 @@ export default defineEventHandler(async event => {
       event.node.res,
     )
 
-    return filePaths.map(e => `/${e}`)
+    return filePaths.map(e => `/images/${e}`)
   } catch (error) {
     console.log(error)
     return createError({
