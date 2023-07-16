@@ -3,9 +3,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const { me } = storeToRefs(useUser())
   const identify = useCookie('identify')
 
-  // if (!me.value) {
   await whoami()
-  // }
+
+  if (!me.value) {
+    identify.value = null
+  }
 
   if (!identify.value && to.path != '/signin') {
     // NOTE: 로그인 되어 있지 않은 경우, 로그인 페이지로 이동
