@@ -14,8 +14,8 @@ export const useUser = defineStore('user', () => {
     const identify = useCookie('identify')
 
     if (!identify.value) return
-
-    if (me.value) return
+    // console.log(me.value)
+    // if (me.value) return
 
     try {
       me.value = await $fetch('/api/whoami')
