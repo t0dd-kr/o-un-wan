@@ -1,4 +1,8 @@
 <script setup lang="ts">
+  import * as filestack from 'filestack-js'
+
+  const { FILESTACK_API_KEY } = useRuntimeConfig().public
+
   const router = useRouter()
   const modal = useModal()
 
@@ -6,26 +10,26 @@
   const { getPosts } = usePost()
 
   const content = ref('')
-  const images = ref([])
-  const files = ref([])
+  const images = ref<string[]>([])
+  const files = ref<File[]>([])
   const exerciseType = ref('RUNNING')
 
   const inputFile = ref<HTMLElement | null>(null)
 
   const step = ref('IMAGE')
 
-  async function onFileUpload(event) {
+  async function onFileUpload(event: any) {
     // console.log(event)
-    files.value = Array.from(event.target.files).slice(0, 5)
+    files.value = Array.from(event.target.files).slice(0, 5) as File[]
 
     // files to preview images
-    images.value = await Promise.all(
+    images.value = await Promise.all<string>(
       files.value.map(
         file =>
           new Promise(res => {
             const reader = new FileReader()
             reader.onload = e => {
-              res(e.target.result)
+              res(e.target?.result as string)
             }
             reader.readAsDataURL(file)
           }),
@@ -57,26 +61,10 @@
   }
 
   async function uploadImages() {
-    const body = new FormData()
+    const client = filestack.init(FILESTACK_API_KEY)
+    let datas = await Promise.all(files.value.map(file => client.upload(file)))
 
-    files.value.forEach(file => {
-      body.append('files', file)
-    })
-
-    let filePaths = []
-
-    try {
-      const res = await $fetch('/api/upload', {
-        method: 'POST',
-        body,
-      })
-
-      filePaths = res
-    } catch (err) {
-      console.log(err)
-    }
-
-    return filePaths
+    return datas.map((data: any) => data.url)
   }
 
   async function createPost() {
@@ -177,7 +165,7 @@
         >
           <button
             class="btn btn-primary min-[421px]:btn-wide max-[420px]:btn-sm max-w-full"
-            @click="$refs.inputFile.click()"
+            @click=";($refs.inputFile as HTMLElement).click()"
           >
             사진 업로드
             <input

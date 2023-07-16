@@ -32,6 +32,10 @@ export default defineNuxtConfig({
     MONGO_PASSWORD:
       process.env.NODE_ENV == 'production' ? process.env.SECRET : 't0dd',
     MONGO_DB_NAME: 'ouw',
+
+    public: {
+      FILESTACK_API_KEY: 'Ary9Mb1AmS0GiYhHD49oZz',
+    },
   },
 
   ssr: false,
