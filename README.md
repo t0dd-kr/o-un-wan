@@ -1,6 +1,11 @@
 # [Fittrix.io](http://Fittrix.io) FE 사전 과제 Readme.md
 
 # O-UN-WAN (오운완)
+### [Live Demo](https://ouw.t0dd.kr, "live demo link")
+
+### Preview
+![image](https://github.com/t0dd-kr/o-un-wan/assets/28590190/dee0073f-0a06-4449-8550-8bdadd27161c)
+![image](https://github.com/t0dd-kr/o-un-wan/assets/28590190/2d347bcb-c36f-48f1-ab29-8f18fd9e4669)
 
 ## 개요
 
@@ -116,3 +121,4 @@ yarn start
 ```
 
 ## 미해결 이슈 정리
+- 
