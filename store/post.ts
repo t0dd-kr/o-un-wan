@@ -1,7 +1,7 @@
 import { PostList } from '@/entities/post.entity'
 
 export const usePost = defineStore('post', () => {
-  const posts = ref([])
+  const posts = ref<PostList>([])
 
   const sortBy = ref('CREATED_AT__DESC')
   const showSortModal = ref(false)
@@ -74,13 +74,23 @@ export const usePost = defineStore('post', () => {
     showFilterModal.value = false
   }
 
-  function requestPostList(identify: string) {
-    return $fetch<PostList>('/api/signin', {
-      method: 'GET',
-      body: {
-        identify,
-      },
-    })
+  async function getPosts(reset: boolean = false) {
+    if (reset) {
+      posts.value = []
+    }
+
+    posts.value = [
+      ...posts.value,
+      ...(await $fetch<PostList>('/api/posts', {
+        method: 'GET',
+        query: {
+          sortBy: sortBy.value,
+          filterBy: filterBy.value,
+          skip: posts.value.length,
+          take: posts.value.length == 0 ? 14 : 15,
+        },
+      })),
+    ]
   }
 
   return {
@@ -97,6 +107,6 @@ export const usePost = defineStore('post', () => {
     setFilterBy,
 
     posts,
-    requestPostList,
+    getPosts,
   }
 })
