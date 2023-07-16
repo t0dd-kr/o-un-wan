@@ -1,5 +1,5 @@
 import { Config } from 'tailwindcss'
-export default <Config>{
+export default <Config>(<any>{
   theme: {
     extend: {},
   },
@@ -22,6 +22,8 @@ export default <Config>{
           'base-content': '#fff',
         },
       },
+      'dark',
+      'light',
     ],
   },
-}
+})
