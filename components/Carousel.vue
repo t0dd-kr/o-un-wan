@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="relative h-full w-full">
+  <div class="relative h-full w-full overflow-hidden">
     <div
       class="flex h-full transition-transform duration-300 ease-in-out"
       :style="{
