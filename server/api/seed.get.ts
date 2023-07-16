@@ -74,7 +74,7 @@ function seedPost(users: User[]) {
       'RUNNING',
       'ETC',
     ]),
-    createdAt: faker.date.anytime(),
+    createdAt: faker.date.past(),
   })
 }
 
@@ -84,6 +84,6 @@ function seedComment(users: User[], posts: Post[]) {
     userUid: randomFrom(users).uid,
     postUid: randomFrom(posts).uid,
     content: faker.lorem.paragraph(),
-    createdAt: faker.date.anytime(),
+    createdAt: faker.date.past(),
   })
 }
