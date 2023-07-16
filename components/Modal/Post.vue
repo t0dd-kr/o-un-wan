@@ -40,7 +40,7 @@
 
 <template>
   <div
-    @click.self="$router.go(-1)"
+    @click.self=";(post = null), $router.go(-1)"
     class="bg-base-100 fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-opacity-80 px-4 py-24 max-[420px]:py-4"
   >
     <div
