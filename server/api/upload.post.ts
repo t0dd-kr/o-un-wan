@@ -3,9 +3,7 @@ import { callNodeListener } from 'h3'
 
 export default defineEventHandler(async event => {
   const DIR =
-    process.env.NODE_ENV == 'production'
-      ? '.output/public/images/'
-      : 'public/images/'
+    process.env.NODE_ENV == 'production' ? '.output/public/' : 'public/images/'
   try {
     let filePaths: string[] = []
     let fileNames: string[] = []
@@ -45,7 +43,9 @@ export default defineEventHandler(async event => {
       event.node.res,
     )
 
-    return filePaths.map(e => `/images/${e}`)
+    return filePaths.map(e =>
+      process.env.NODE_ENV == 'production' ? `/${e}` : `/images/${e}`,
+    )
   } catch (error) {
     console.log(error)
     return createError({
