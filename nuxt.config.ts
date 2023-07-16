@@ -26,9 +26,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     MONGO_PORT: '27017',
-    MONGO_HOST: '127.0.0.1',
+    MONGO_HOST:
+      process.env.NODE_ENV == 'production' ? process.env.HOST : '127.0.0.1',
     MONGO_USERNAME: 't0dd',
-    MONGO_PASSWORD: 't0dd',
+    MONGO_PASSWORD:
+      process.env.NODE_ENV == 'production' ? process.env.SECRET : 't0dd',
     MONGO_DB_NAME: 'ouw',
   },
 
