@@ -78,8 +78,11 @@
           >
             <Icon name="heroicons:chevron-left" class="h-5 w-5" />
           </button>
-          <div class="font-bold" v-if="post?.createdAt">
+          <div class="flex flex-col font-bold" v-if="post?.createdAt">
             {{ dayjs(post?.createdAt).format('YYYY-MM-DD') }}
+            <span class="text-center text-xs font-normal text-gray-400">
+              {{ dayjs(post?.createdAt).format('HH:mm') }}
+            </span>
           </div>
           <button
             class="btn btn-circle btn-sm"
