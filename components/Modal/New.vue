@@ -13,6 +13,7 @@
   const images = ref<string[]>([])
   const files = ref<File[]>([])
   const exerciseType = ref('RUNNING')
+  const loading = ref(false)
 
   const inputFile = ref<HTMLElement | null>(null)
 
@@ -38,6 +39,8 @@
   }
 
   async function onCancel() {
+    if (loading.value) return
+
     if (images.value.length > 0) {
       modal.open({
         title: '게시글 작성을 취소하시겠습니까?',
@@ -68,6 +71,8 @@
   }
 
   async function createPost() {
+    loading.value = true
+
     const images = await uploadImages()
 
     try {
@@ -84,6 +89,8 @@
     }
 
     await getPosts(true)
+
+    loading.value = false
 
     router.push('/')
   }
@@ -179,6 +186,12 @@
           </button>
         </div>
       </div>
+    </div>
+    <div
+      class="bg-base-100 fixed left-0 top-0 z-30 flex h-screen w-screen items-center justify-center bg-opacity-80 px-5"
+      v-if="loading"
+    >
+      <Icon name="svg-spinners:12-dots-scale-rotate" class="h-10 w-10" />
     </div>
   </div>
 </template>

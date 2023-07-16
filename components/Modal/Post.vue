@@ -1,9 +1,11 @@
 <script setup lang="ts">
+  import { Post } from '@/entities/post.entity'
+
   const { filterByOptions, posts } = storeToRefs(usePost())
   const { getPosts } = usePost()
 
   const route = useRoute()
-  const { modal } = useModal()
+  const modal = useModal()
 
   const { refresh, data: post } = useAsyncData<Post>('post', () =>
     $fetch(`/api/posts/${route.params.postUid}`),
@@ -72,7 +74,7 @@
           <button
             class="btn btn-circle btn-sm"
             :disabled="!prevPost"
-            @click="$router.push(`/${prevPost.uid}`)"
+            @click="$router.push(`/${prevPost?.uid}`)"
           >
             <Icon name="heroicons:chevron-left" class="h-5 w-5" />
           </button>
@@ -82,7 +84,7 @@
           <button
             class="btn btn-circle btn-sm"
             :disabled="!nextPost"
-            @click="$router.push(`/${nextPost.uid}`)"
+            @click="$router.push(`/${nextPost?.uid}`)"
           >
             <Icon name="heroicons:chevron-right" class="h-5 w-5" />
           </button>
@@ -109,7 +111,7 @@
                   }}
                 </span>
               </div>
-              <span class="h-10 overflow-auto text-xs">
+              <span class="text-xs">
                 {{ post?.content }}
               </span>
             </div>
@@ -118,7 +120,7 @@
 
         <div class="flex flex-col">
           <span class="text-primary px-3 pt-2 text-xs font-bold">
-            댓글 ({{ post?.comments.length }})
+            댓글 ({{ post?.comments?.length }})
           </span>
           <div class="max-h-[24vh] overflow-auto">
             <div
@@ -148,7 +150,7 @@
         </div>
       </div>
 
-      <div class="join w-full px-3 py-4">
+      <div class="join w-full px-3 py-4" v-if="post?.comments">
         <input
           :disabled="post?.comments.length >= 5"
           v-model="content"

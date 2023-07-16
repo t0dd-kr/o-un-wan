@@ -8,7 +8,7 @@ export const useModal = defineStore('modal', () => {
   const show = ref(false)
   const title = ref('')
   const content = ref('')
-  const buttons = ref([])
+  const buttons = ref<ModalButton[]>([])
 
   function open(payload: any) {
     show.value = true
