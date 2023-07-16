@@ -17,7 +17,11 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const comments = await COMMENT.find({ postUid }).toArray()
+  const comments = await COMMENT.find({ postUid })
+    .sort({
+      createdAt: -1,
+    })
+    .toArray()
   const commentUsers = await USER.find({
     uid: {
       $in: comments.map(comment => comment.userUid),
