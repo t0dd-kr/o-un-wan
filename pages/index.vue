@@ -62,7 +62,7 @@
             }"
             @click="showFilterModal = true"
           >
-            <icon name="heroicons:funnel-solid" class="aspect-square h-5 w-5" />
+            <Icon name="heroicons:funnel-solid" class="aspect-square h-5 w-5" />
             {{ filterByLabel }}
           </button>
 
@@ -73,7 +73,7 @@
             }"
             @click="showSortModal = true"
           >
-            <icon
+            <Icon
               name="heroicons:arrows-up-down"
               class="aspect-square h-5 w-5"
             />
@@ -86,7 +86,7 @@
             class="flex aspect-square cursor-pointer items-center justify-center bg-white bg-opacity-0 hover:bg-opacity-5"
             @click="$router.push('/new')"
           >
-            <icon
+            <Icon
               name="heroicons:plus"
               class="h-12 w-12 max-[420px]:h-6 max-[420px]:w-6"
             />
@@ -106,14 +106,14 @@
                 class="flex items-center justify-end gap-1"
                 v-if="post.images.length > 1"
               >
-                <icon name="heroicons:square-2-stack-solid" class="h-6 w-6" />
+                <Icon name="heroicons:square-2-stack-solid" class="h-6 w-6" />
               </div>
             </div>
             <div
               class="bg-base-100 absolute left-0 top-0 flex h-full w-full items-center justify-center bg-opacity-20 p-2 opacity-0 group-hover:opacity-100"
             >
               <div class="flex items-center gap-1">
-                <icon
+                <Icon
                   name="heroicons:chat-bubble-oval-left-solid"
                   class="h-6 w-6"
                 />

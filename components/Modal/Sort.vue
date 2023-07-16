@@ -20,7 +20,7 @@
             v-if="sortBy == option.value"
             class="absolute right-0 top-0 flex h-full w-full items-center justify-end px-2"
           >
-            <icon name="heroicons:check-circle-20-solid" class="h-5 w-5" />
+            <Icon name="heroicons:check-circle-20-solid" class="h-5 w-5" />
           </div>
         </a>
       </li>

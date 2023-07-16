@@ -49,13 +49,13 @@
       <div class="flex flex-col gap-0">
         <div class="flex items-center justify-center gap-8 py-2">
           <button class="btn btn-circle btn-sm">
-            <icon name="heroicons:chevron-left" class="h-5 w-5" />
+            <Icon name="heroicons:chevron-left" class="h-5 w-5" />
           </button>
-          <div class="font-bold">
+          <div class="font-bold" v-if="post?.createdAt">
             {{ dayjs(post?.createdAt).format('YYYY-MM-DD') }}
           </div>
           <button class="btn btn-circle btn-sm">
-            <icon name="heroicons:chevron-right" class="h-5 w-5" />
+            <Icon name="heroicons:chevron-right" class="h-5 w-5" />
           </button>
         </div>
         <!-- NOTE: 캐러셀 -->
