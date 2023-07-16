@@ -2,7 +2,10 @@ import multer from 'multer'
 import { callNodeListener } from 'h3'
 
 export default defineEventHandler(async event => {
-  const DIR = process.env.NODE_ENV == 'production' ? '.output/public' : 'public'
+  const DIR =
+    process.env.NODE_ENV == 'production'
+      ? '.output/public/images'
+      : 'public/images'
   try {
     let filePaths: string[] = []
     let fileNames: string[] = []
