@@ -31,4 +31,6 @@ export default defineNuxtConfig({
     MONGO_PASSWORD: 't0dd',
     MONGO_DB_NAME: 'ouw',
   },
+
+  ssr: false,
 })
