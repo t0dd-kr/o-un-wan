@@ -10,8 +10,23 @@ export const useUser = defineStore('user', () => {
     })
   }
 
+  async function whoami() {
+    const identify = useCookie('identify')
+
+    if (!identify.value) return
+
+    if (me.value) return
+
+    try {
+      me.value = await $fetch('/api/whoami')
+    } catch (err) {
+      location.href = '/'
+    }
+  }
+
   return {
     me,
+    whoami,
     requestSignin,
   }
 })
