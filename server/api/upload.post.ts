@@ -2,12 +2,16 @@ import multer from 'multer'
 import { callNodeListener } from 'h3'
 
 export default defineEventHandler(async event => {
+  const DIR =
+    process.env.NODE_ENV == 'production'
+      ? '.output/public/images'
+      : 'public/images'
   try {
     let filePaths: string[] = []
     let fileNames: string[] = []
     const storage = multer.diskStorage({
       destination: (req, file, cb) => {
-        cb(null, 'public/images')
+        cb(null, DIR)
       },
       filename: (req, file, cbd) => {
         const filePath = `${Date.now()}-${file.originalname
