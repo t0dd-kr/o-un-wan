@@ -14,7 +14,7 @@
   const route = useRoute()
 
   useAsyncData(async () => {
-    await getPosts()
+    await getPosts(true)
   })
 
   watch(sortBy, () => {
@@ -23,6 +23,28 @@
 
   watch(filterBy, () => {
     getPosts(true)
+  })
+
+  onMounted(() => {
+    const body = ref(document)
+
+    const { arrivedState, isScrolling } = useScroll(body, {
+      behavior: 'smooth',
+    })
+
+    const { bottom } = toRefs(arrivedState)
+
+    function onScroll() {
+      if (isScrolling.value && bottom.value) {
+        getPosts()
+      }
+    }
+
+    window.addEventListener('scroll', onScroll)
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', onScroll)
+    })
   })
 </script>
 
@@ -71,7 +93,7 @@
           </div>
           <div
             v-for="(post, index) in posts"
-            :key="index"
+            :key="post.uid"
             @click="$router.push(`/${post.uid}`)"
             class="group relative cursor-pointer"
           >
