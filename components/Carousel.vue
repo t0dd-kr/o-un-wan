@@ -33,7 +33,7 @@
         @click="carouselIndex--"
         v-if="carouselIndex > 0"
       >
-        <icon name="heroicons:chevron-left" class="h-6 w-6" />
+        <Icon name="heroicons:chevron-left" class="h-6 w-6" />
       </button>
       <div v-else></div>
       <button
@@ -41,7 +41,7 @@
         @click="carouselIndex++"
         v-if="carouselIndex < images.length - 1"
       >
-        <icon name="heroicons:chevron-right" class="h-6 w-6" />
+        <Icon name="heroicons:chevron-right" class="h-6 w-6" />
       </button>
       <div v-else></div>
     </div>
