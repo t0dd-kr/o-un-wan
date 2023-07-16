@@ -24,4 +24,11 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['store/**/*', 'store/*'],
   },
+  runtimeConfig: {
+    MONGO_PORT: '27017',
+    MONGO_HOST: '127.0.0.1',
+    MONGO_USERNAME: 't0dd',
+    MONGO_PASSWORD: 't0dd',
+    MONGO_DB_NAME: 'ouw',
+  },
 })
