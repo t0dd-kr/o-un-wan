@@ -2,10 +2,7 @@ import multer from 'multer'
 import { callNodeListener } from 'h3'
 
 export default defineEventHandler(async event => {
-  const DIR =
-    process.env.NODE_ENV == 'production'
-      ? '.output/public/images'
-      : 'public/images'
+  const DIR = process.env.NODE_ENV == 'production' ? '.output/public' : 'public'
   try {
     let filePaths: string[] = []
     let fileNames: string[] = []
@@ -16,8 +13,7 @@ export default defineEventHandler(async event => {
       filename: (req, file, cbd) => {
         const filePath = `${Date.now()}-${file.originalname
           .toLocaleLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/\./g, '-')}`
+          .replace(/\s+/g, '-')}`
         filePaths.push(filePath)
         fileNames.push(file.originalname)
         cbd(null, filePath)
@@ -46,7 +42,7 @@ export default defineEventHandler(async event => {
       event.node.res,
     )
 
-    return filePaths.map(e => `/images/${e}`)
+    return filePaths.map(e => `/${e}`)
   } catch (error) {
     console.log(error)
     return createError({
