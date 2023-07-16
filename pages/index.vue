@@ -128,11 +128,4 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-  ::-webkit-scrollbar {
-    // width: 0;
-    // background: #e89a3e; /* 스크롤바 막대 색상 */
-    // border: 2px solid #9b6a2f; /* 스크롤바 막대 테두리 설정  */
-    // border-radius: 12px 12px 12px 12px;
-  }
-</style>
+<style scoped lang="scss"></style>
