@@ -1,14 +1,29 @@
 <script setup lang="ts">
-  const { showSortModal, sortBy, sortByLabel } = storeToRefs(usePost())
-  const { showFilterModal, filterBy, filterByLabel } = storeToRefs(usePost())
+  const {
+    showFilterModal,
+    filterBy,
+    filterByLabel,
+    showSortModal,
+    sortBy,
+    sortByLabel,
+    posts,
+  } = storeToRefs(usePost())
+
+  const { getPosts } = usePost()
+
   const route = useRoute()
 
-  const images = ref([])
+  useAsyncData(async () => {
+    await getPosts()
+  })
 
-  for (let i = 0; i < 40; i++) {
-    const number = Math.round(Math.random() * 1084)
-    images.value.push(`https://picsum.photos/id/${number}/300/400`)
-  }
+  watch(sortBy, () => {
+    getPosts(true)
+  })
+
+  watch(filterBy, () => {
+    getPosts(true)
+  })
 </script>
 
 <template>
@@ -46,7 +61,7 @@
 
         <div class="grid w-full grid-cols-3 gap-2 pb-10 max-[420px]:gap-1">
           <div
-            class="flex cursor-pointer items-center justify-center bg-white bg-opacity-0 hover:bg-opacity-5"
+            class="flex aspect-square cursor-pointer items-center justify-center bg-white bg-opacity-0 hover:bg-opacity-5"
             @click="$router.push('/new')"
           >
             <icon
@@ -55,17 +70,20 @@
             />
           </div>
           <div
-            v-for="(image, index) in images"
+            v-for="(post, index) in posts"
             :key="index"
-            @click="$router.push(`/${index}`)"
+            @click="$router.push(`/${post.uid}`)"
             class="group relative cursor-pointer"
           >
             <div
-              :style="`background-image: url(${image})`"
+              :style="`background-image: url(${post.images[0]})`"
               class="aspect-square w-full bg-cover bg-center bg-no-repeat"
             />
             <div class="absolute left-0 top-0 h-full w-full p-2">
-              <div class="flex items-center justify-end gap-1">
+              <div
+                class="flex items-center justify-end gap-1"
+                v-if="post.images.length > 1"
+              >
                 <icon name="heroicons:square-2-stack-solid" class="h-6 w-6" />
               </div>
             </div>
@@ -77,7 +95,7 @@
                   name="heroicons:chat-bubble-oval-left-solid"
                   class="h-6 w-6"
                 />
-                <span>5</span>
+                <span>{{ post.commentCount }}</span>
               </div>
             </div>
           </div>
