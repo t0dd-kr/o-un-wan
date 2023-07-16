@@ -4,12 +4,22 @@
   })
 
   const { requestSignin } = useUser()
+  const modal = useModal()
 
   const identify = ref('')
 
   async function signin() {
     if (!identify.value) {
-      alert('아이디를 입력해주세요.')
+      modal.open({
+        title: '로그인',
+        content: '아이디를 입력 후 로그인해주세요.',
+        buttons: [
+          {
+            label: '확인',
+            class: 'text-primary',
+          },
+        ],
+      })
       return
     }
 
