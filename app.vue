@@ -15,6 +15,7 @@
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
+      <ModalCommon />
     </Body>
   </Html>
 </template>
