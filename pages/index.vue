@@ -47,6 +47,7 @@
         <div class="grid w-full grid-cols-3 gap-2 pb-10 max-[420px]:gap-1">
           <div
             class="flex cursor-pointer items-center justify-center bg-white bg-opacity-0 hover:bg-opacity-5"
+            @click="$router.push('/new')"
           >
             <icon name="heroicons:plus" class="h-12 w-12" />
           </div>
