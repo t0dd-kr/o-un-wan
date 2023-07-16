@@ -43,7 +43,7 @@
             label: '삭제',
             class: 'text-accent',
             cb: () => {
-              router.go(-1)
+              router.push('/')
             },
           },
           {
@@ -52,7 +52,7 @@
         ],
       })
     } else {
-      router.go(-1)
+      router.push('/')
     }
   }
 
