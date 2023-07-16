@@ -6,12 +6,12 @@ export const zComment = z.object({
   postUid: z.string(),
   content: z.string(),
   createdAt: z.date(),
+  identify: z.string().optional(),
 })
 
 export type Comment = z.infer<typeof zComment>
 
 export const zCommentPayload = zComment.pick({
-  postUid: true,
   content: true,
 })
 

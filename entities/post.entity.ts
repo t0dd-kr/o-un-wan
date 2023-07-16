@@ -9,6 +9,8 @@ export const zPost = z.object({
   exerciseType: z.enum(['SQUAT', 'BENCH_PRESS', 'LUNGE', 'RUNNING', 'ETC']),
   lastCommentedAt: z.date().optional(),
   createdAt: z.date(),
+  comments: z.array(zComment).optional(),
+  identify: z.string().optional(),
 })
 
 export type Post = z.infer<typeof zPost>
@@ -23,7 +25,7 @@ export type PostPayload = z.infer<typeof zPostPayload>
 
 export const zPostList = z.array(
   zPost.extend({
-    comments: z.array(zComment),
+    commentCount: z.number().default(0),
   }),
 )
 
