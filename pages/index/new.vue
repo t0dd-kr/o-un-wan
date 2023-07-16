@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template></template>
+<template>
+  <ModalNew />
+</template>
 
 <style scoped lang="scss"></style>
