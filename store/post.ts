@@ -87,7 +87,7 @@ export const usePost = defineStore('post', () => {
           sortBy: sortBy.value,
           filterBy: filterBy.value,
           skip: posts.value.length,
-          take: posts.value.length == 0 ? 14 : 15,
+          take: posts.value.length == 0 ? 20 : 21,
         },
       })),
     ]
